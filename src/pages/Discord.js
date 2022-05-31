@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
+//import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 
 const tokenURL = "https://discord.com/api/oauth2/token";
 const apiURLBase = "https://discord.com/api/users/@me";
@@ -25,7 +25,6 @@ const Discord = () => {
           code: "query code",
           grant_type: "authorization_code",
           redirect_uri: `http://localhost:3000/login/discord`,
-          scope: "identify",
         })
         .then((res) => res.json())
         .then((res) => {
