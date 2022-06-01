@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-//import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
+
 
 // const tokenURL = "https://discord.com/api/oauth2/token";
 // const apiURLBase = "https://discord.com/api/users/@me";
