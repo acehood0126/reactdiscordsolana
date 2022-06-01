@@ -3,8 +3,8 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 //import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 
-const tokenURL = "https://discord.com/api/oauth2/token";
-const apiURLBase = "https://discord.com/api/users/@me";
+// const tokenURL = "https://discord.com/api/oauth2/token";
+// const apiURLBase = "https://discord.com/api/users/@me";
 const serverURL = "http://localhost:5000";
 
 const Discord = () => {
@@ -46,7 +46,7 @@ const Discord = () => {
     //     });
     // }
     // getAccessToken();
-  }, []);
+  }, [username, userid, gid]);
 
   return (
     <div className="w-screen h-screen grid place-items-center">
