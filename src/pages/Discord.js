@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 //import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 
 const tokenURL = "https://discord.com/api/oauth2/token";
@@ -16,30 +16,36 @@ const Discord = () => {
   const [discordid, setDiscordId] = useState("");
   const [wadres, setWalletAddress] = useState("");
   const [groupid, setGroupId] = useState("");
+
+  const { username, userid, gid } = useParams();
+
   useEffect(() => {
-    async function getAccessToken() {
-      await axios
-        .post(tokenURL, {
-          client_id: "934363403550593024",
-          client_secret: "WSVa1qcqz1Ger-Km9RebOgfjIgk5VBvK",
-          code: "query code",
-          grant_type: "authorization_code",
-          redirect_uri: `http://localhost:3000/login/discord`,
-        })
-        .then((res) => res.json())
-        .then((res) => {
-          async function getUserData() {
-            await axios.get(apiURLBase, {
-              authorization: res.token_type + res.access_token,
-            });
-          }
-          getUserData();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-    getAccessToken();
+    setDiscordName(username);
+    setDiscordId(userid);
+    setGroupId(gid);
+    // async function getAccessToken() {
+    //   await axios
+    //     .post(tokenURL, {
+    //       client_id: "934363403550593024",
+    //       client_secret: "WSVa1qcqz1Ger-Km9RebOgfjIgk5VBvK",
+    //       code: "query code",
+    //       grant_type: "authorization_code",
+    //       redirect_uri: `http://localhost:3000/login/discord`,
+    //     })
+    //     .then((res) => res.json())
+    //     .then((res) => {
+    //       async function getUserData() {
+    //         await axios.get(apiURLBase, {
+    //           authorization: res.token_type + res.access_token,
+    //         });
+    //       }
+    //       getUserData();
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // }
+    // getAccessToken();
   }, []);
 
   return (
@@ -59,6 +65,7 @@ const Discord = () => {
             placeholder="Discord Name"
             value={discordname}
             onChange={(e) => setDiscordName(e.target.value)}
+            readOnly
             className="flex-shrink-0 flex justify-center items-center text-center border-b-2 p-3 m-1 border-indigo-500 focus:border-indigo-900 focus:outline-none"
           ></input>
           <input
@@ -66,6 +73,7 @@ const Discord = () => {
             placeholder="Discord ID"
             value={discordid}
             onChange={(e) => setDiscordId(e.target.value)}
+            readOnly
             className="flex-shrink-0 flex justify-center items-center text-center border-b-2 p-3 m-1 border-indigo-500 focus:border-indigo-900 focus:outline-none"
           ></input>
           <input
@@ -73,6 +81,7 @@ const Discord = () => {
             placeholder="Wallet Address"
             value={wadres}
             onChange={(e) => setWalletAddress(e.target.value)}
+            readOnly
             className="flex-shrink-0 flex justify-center items-center text-center border-b-2 p-3 m-1 border-indigo-500 focus:border-indigo-900 focus:outline-none"
           ></input>
           <input
@@ -80,6 +89,7 @@ const Discord = () => {
             placeholder="Group ID"
             value={groupid}
             onChange={(e) => setGroupId(e.target.value)}
+            readOnly
             className="flex-shrink-0 flex justify-center items-center text-center border-b-2 p-3 m-1 border-indigo-500 focus:border-indigo-900 focus:outline-none"
           ></input>
 
